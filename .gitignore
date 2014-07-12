@@ -1,0 +1,10 @@
+#Global
+.Apple*
+.DS_Store
+._*
+.clang_complete
+.local.vimrc
+Thumbs.db
+
+#/node_modules
+/node_modules
