@@ -1,4 +1,4 @@
-// index.js db initial
+// index.js mysql orm initial
 
 var fs        = require('fs')
 var path      = require('path');
@@ -10,16 +10,14 @@ var sequelize = new Sequelize('hercules_rag', 'alienroapi', '7Pj3MfBcPptZ', {
     port    : 33306,
     define  : { engine: 'MYISAM' }
   });
-
-fs
-  .readdirSync(__dirname)
-  .filter(function(file) {
-    return (file.indexOf('.') !== 0) && (file !== 'index.js');
-  })
-  .forEach(function(file) {
-    var model = sequelize.import(path.join(__dirname, file));
-    db[model.name] = model;
-  });
+var models = [
+  'login',
+  'char'
+];
+models.forEach(function(file) {
+  var model = sequelize.import(path.join(__dirname, file));
+  db[model.name] = model;
+});
 
 Object.keys(db).forEach(function(modelName) {
   if ('associate' in db[modelName]) {

@@ -6,12 +6,20 @@
     "start": "node ./bin/www"
   },
   "dependencies": {
+    "bcrypt": "~0.7.8",
     "body-parser": "~1.4.3",
     "debug": "~1.0.3",
     "express": "~4.5.1",
+    "express-session": "~1.6.5",
     "lodash": "~2.4.1",
+    "mongoose": "~3.8.13",
     "morgan": "~1.1.1",
     "mysql": "~2.3.2",
+    "oauth2orize": "^1.0.1",
+    "passport": "~0.2.0",
+    "passport-http": "~0.2.2",
+    "passport-http-bearer": "~1.0.1",
+    "passport-oauth2-client-password": "~0.1.1",
     "sequelize": "~1.7.9"
   }
 }

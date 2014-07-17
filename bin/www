@@ -1,20 +1,9 @@
 #!/usr/bin/env node
-var debug = require('debug')('alienro-api');
+var debug = require('debug')('alienro');
 var app = require('../app');
-var db = require('../models');
 
 app.set('port', process.env.PORT || 3000);
 
-db
-  .sequelize
-  .authenticate()
-  .complete(function(err) {
-    if (!!err) {
-      debug('Unable to connect to the database:', err);
-    } else {
-      debug('Successfully connected to mysql!');
-      var server = app.listen(app.get('port'), function() {
-        debug('Express server listening on port ' + server.address().port);
-      });
-    }
-  });
+var server = app.listen(app.get('port'), function() {
+  debug('Express server listening on port ' + server.address().port);
+});
