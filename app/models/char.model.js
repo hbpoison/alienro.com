@@ -1,3 +1,11 @@
+'use strict';
+
+/**
+ * [exports description]
+ * @param  {[type]} sequelize [description]
+ * @param  {[type]} DataTypes [description]
+ * @return {[type]}           [description]
+ */
 module.exports = function(sequelize, DataTypes) {
   var Char = sequelize.define('Char', {
     char_id: {

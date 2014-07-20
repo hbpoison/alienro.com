@@ -1,3 +1,16 @@
+'use strict';
+
+/**
+ * Module dependencies.
+ */
+var crypto = require('crypto');
+
+/**
+ * [exports description]
+ * @param  {[type]} sequelize [description]
+ * @param  {[type]} DataTypes [description]
+ * @return {[type]}           [description]
+ */
 module.exports = function(sequelize, DataTypes) {
   var Login = sequelize.define('Login', {
     account_id: {
@@ -85,7 +98,20 @@ module.exports = function(sequelize, DataTypes) {
     timestamps      : false,
     underscored     : true,
     freezeTableName : true,
-    tableName       : 'login'
+    tableName       : 'login',
+    setterMethods : {
+      user_pass: function(user_pass) {
+        return this.setDataValue('user_pass', crypto.createHash('md5').update(user_pass).digest('hex'));
+      }
+    },
+    instanceMethods: {
+      authenticate: function(password) {
+        if (this.user_pass !== crypto.createHash('md5').update(password).digest('hex')) {
+          return false;
+        }
+        return true;
+      }
+    }
   });
   
   return Login;
